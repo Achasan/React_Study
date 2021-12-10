@@ -24,6 +24,15 @@ function App() {
     goodModify(goodCopy);
   }
 
+  function addPost() {
+    let titleCopy = [...title];
+    let goodCopy = [...good];
+    goodCopy.unshift(0);
+    titleCopy.unshift(inputTemp);
+    titleModify(titleCopy);
+    goodModify(goodCopy);
+  }
+
   // function changeTitle() {
   //   let newArray = [...title]; // title Array 깊은 복사
   //   newArray[0] = '여자 코트 추천';
@@ -49,6 +58,26 @@ function App() {
           ></List>
         );
       })}
+
+      <div className="publish">
+        <input
+          id="titleData"
+          onChange={(e) => {
+            tempModify(e.target.value);
+          }}
+        ></input>
+        <button
+          onClick={(e) => {
+            const $input = e.target.previousSibling;
+            addPost();
+            $input.value = "";
+          }}
+        >
+          저장
+        </button>
+      </div>
+
+      <Profile></Profile>
 
       <input
         onChange={(e) => {
@@ -106,6 +135,30 @@ function Modal(props) {
       <p>상세내용</p>
     </div>
   );
+}
+
+// react legacy syntax
+class Profile extends React.Component {
+  constructor() {
+    super();
+    this.state = { name: "kim" };
+  }
+
+  render() {
+    return (
+      <div>
+        <h3>this is profile</h3>
+        <p>i'm {this.state.name}</p>
+        <button
+          onClick={() => {
+            this.setState({ name: "park" });
+          }}
+        >
+          바꾸기
+        </button>
+      </div>
+    );
+  }
 }
 
 export default App;
