@@ -50,6 +50,12 @@ function App() {
         );
       })}
 
+      <input
+        onChange={(e) => {
+          tempModify(e.target.value);
+        }}
+      ></input>
+
       <button
         onClick={() => {
           modalModify(!modal);
